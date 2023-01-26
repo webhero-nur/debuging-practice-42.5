@@ -95,16 +95,22 @@ const loadPhoneDetails = async id => {
     displayPhoneDetails(data.data);
 }
 
-const displayPhoneDetails = phone => {
+const displayPhoneDetails = device => {
     // console.log(phone);
     const modalTitle = document.getElementById('phoneDetailModalLabel');
-    modalTitle.innerText = phone.name;
+    modalTitle.innerText = device.name;
     const phoneDetails = document.getElementById('phone-details');
     phoneDetails.innerHTML = `
-        <p>Release Date: ${phone.releaseDate}</p>
-        <p>Storage: ${phone?.mainFeatures?.storage}</p>
-        <p>Others: ${phone.others ? phone.others.Bluetooth : 'No Bluetooth Information'}</p>
-        <p>Sensor: ${phone.mainFeatures.sensors ? phone.mainFeatures.sensors[0] : 'no sensor'}</p>
+        <div class="card mx-auto" style="width: 95%">
+            <img src="${device.image}" class="card-img-top" alt="Picture of ${device.name}">
+            <div class="card-body">
+                <h5 class="card-title text-center">Brand: <strong class="text-info">${device.brand}</strong></h5>
+                <p>Release Date: <strong>${device.releaseDate}</strong></p>
+                <p>Storage: <strong>${device?.mainFeatures?.storage}</strong></p>
+                <p>Bluetooth: <strong>${device.others ? device.others.Bluetooth : '<span class="text-black-50">No Bluetooth Information</span>'}</strong></p>
+                <p>Sensor: <strong>${device.mainFeatures.sensors ? device.mainFeatures.sensors[0] : 'no sensor'}</strong></p>
+            </div>
+        </div>
     `
 }
 
