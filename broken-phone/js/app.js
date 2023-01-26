@@ -1,4 +1,7 @@
-const loadPhones = async (searchText = "a", dataLimit) => {
+const loadPhones = async (searchText, dataLimit) => {
+    if (searchText === '' || searchText.toLowerCase() === 'all') {
+        searchText = 'a';
+    }
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
     const res = await fetch(url);
     const data = await res.json();
@@ -82,7 +85,7 @@ const toggleSpinner = isLoading => {
 
 // not the best way to load show All
 document.getElementById('btn-show-all').addEventListener('click', function () {
-    processSearch(10);
+    processSearch(0);
 })
 
 const loadPhoneDetails = async id => {
