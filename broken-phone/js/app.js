@@ -31,7 +31,7 @@ const displayPhones = (phones, dataLimit) => {
     phones.forEach(phone => {
         const phoneDiv = document.createElement('div');
         phoneDiv.classList.add('col');
-        console.log(phone);
+        // console.log(phone);
         phoneDiv.innerHTML = `
         <div class="card p-4">
             <img src="${phone.image}" class="card-img-top" alt="...">
@@ -71,7 +71,7 @@ document.getElementById('search-field').addEventListener('keypress', function (e
 
 const toggleSpinner = isLoading => {
     const loaderSection = document.getElementById('loader');
-    if (!isLoading) {
+    if (isLoading) {
         loaderSection.classList.remove('d-none')
     }
     else {
