@@ -2,9 +2,9 @@ document.getElementById('issueInputForm').addEventListener('submit', submitIssue
 
 function submitIssue(e) {
   const getInputValue = id => document.getElementById(id).value;
-  const description = getInputValue('issueDescription');
+  const description = getInputValue('issueDescription') ? getInputValue('issueDescription') : 'No Description';
   const severity = getInputValue('issueSeverity');
-  const assignedTo = getInputValue('issueAssignedTo');
+  const assignedTo = getInputValue('issueAssignedTo') ? getInputValue('issueAssignedTo') : 'Assigned to none';
   const id = Math.floor(Math.random() * 100000000) + '';
   const status = 'Open';
 
@@ -49,8 +49,8 @@ const fetchIssues = () => {
                               <h3> ${description} </h3>
                               <p><span class="glyphicon glyphicon-time"></span> ${severity}</p>
                               <p><span class="glyphicon glyphicon-user"></span> ${assignedTo}</p>
-                              <a href="#" onclick="setStatusClosed(${id})" class="btn btn-warning">Close</a>
-                              <a href="#" onclick="deleteIssue(${id})" class="btn btn-danger">Delete</a>
+                              <button onclick="setStatusClosed(${id})" class="btn btn-warning">Close</button>
+                              <button onclick="deleteIssue(${id})" class="btn btn-danger">Delete</button>
                               </div>`;
   }
 }
