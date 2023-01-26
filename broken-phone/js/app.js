@@ -1,4 +1,4 @@
-const loadPhones = async (searchText, dataLimit) => {
+const loadPhones = async (searchText = "a", dataLimit) => {
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`
     const res = await fetch(url);
     const data = await res.json();
@@ -7,7 +7,7 @@ const loadPhones = async (searchText, dataLimit) => {
 
 const displayPhones = (phones, dataLimit) => {
     const phonesContainer = document.getElementById('phones-container');
-    // phonesContainer.textContent = '';
+    phonesContainer.textContent = '';
     // display 10 phones only 
     const showAll = document.getElementById('show-all');
     if (dataLimit && phones.length > 10) {
@@ -82,7 +82,7 @@ const toggleSpinner = isLoading => {
 
 // not the best way to load show All
 document.getElementById('btn-show-all').addEventListener('click', function () {
-    processSearch();
+    processSearch(10);
 })
 
 const loadPhoneDetails = async id => {
@@ -106,4 +106,4 @@ const displayPhoneDetails = phone => {
     `
 }
 
-loadPhones('a', true);
+loadPhones('a', 10);
